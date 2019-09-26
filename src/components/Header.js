@@ -9,8 +9,8 @@ const Header = () => {
                 Streamy
             </Link>
             <div className="right menu">
-                <Link to="./" className="item">
-                    All Streams
+                <Link to="/streams/new" className="item">
+                    New Stream
                 </Link>
                 <GoogleAuth />
 
