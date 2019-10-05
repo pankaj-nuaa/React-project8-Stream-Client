@@ -5,8 +5,8 @@ import { signIn, signOut } from '../actions';
 class GoogleAuth extends React.Component {
 
     componentDidMount() {
-        window.gapi.load('client:auth2', () => {
-            window.gapi.client.init({
+        window.gapi.load('client:auth2', () => {   //loading the gapi client:auth2 library  then invoking the call back function 
+            window.gapi.client.init({               //init the client library with the paramenters
                 clientId: '926302602377-3o9pa50b2udrptk6ohcn5t06ehi3qbm6.apps.googleusercontent.com',
                 scope: 'email'
             }).then(() => {
@@ -15,7 +15,7 @@ class GoogleAuth extends React.Component {
                 this.onAuthChange(this.auth.isSignedIn.get());
                 // this.setState({ isSignedIn: this.auth.isSignedIn.get() });
                 //this will listen when the user signs in 
-                this.auth.isSignedIn.listen(this.onAuthChange);
+                this.auth.isSignedIn.listen(this.onAuthChange); // this listens if the user is signed in or not and changes the state on the fly, onAuthChange has boolean parameter, 
             });
         });
     }

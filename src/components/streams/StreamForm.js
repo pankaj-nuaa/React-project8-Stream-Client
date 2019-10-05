@@ -1,9 +1,11 @@
+// This form is shared between streamCreate and streamEdit
+
 import React from "react";
 import { Field, reduxForm } from 'redux-form'
-import { connect } from "react-redux";
-import { createStream } from "../../actions";
 
-class StreamCreate extends React.Component {
+
+
+class StreamForm extends React.Component {
     renderError({ error, touched }) {
         if (touched && error) {
             return (
@@ -29,8 +31,7 @@ class StreamCreate extends React.Component {
         )
     }
     onSubmit = (formValues) => {
-        // event.preventDefault(); we don't have to call th at event more         
-        this.props.createStream(formValues);
+        this.props.onSubmit(formValues)  //this will send formvalues to props which will be invoked in the upstream component
     }
 
     render() {
@@ -58,9 +59,8 @@ const validate = (formValues) => {
     return errors;
 }
 
-const formWrapped = reduxForm({
-    form: 'streamCreate',
-    validate: validate  // this can be just   validate
-})(StreamCreate);
+export default reduxForm({
+    form: 'streamForm',
+    validate: validate
+})(StreamForm);
 
-export default connect(null, { createStream })(formWrapped);
