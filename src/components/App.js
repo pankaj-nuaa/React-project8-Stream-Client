@@ -1,5 +1,6 @@
 import React from 'react';
-import { Router, Route } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
+
 import StreamCreate from './streams/StreamCreate';
 import StreamDelete from './streams/StreamDelete';
 import StreamEdit from './streams/StreamEdit';
@@ -15,12 +16,15 @@ const App = () => {
             <Router history={history}>
                 <div>
                     <Header />
-                    <Route path='/' exact component={StreamList} />
-                    <Route path='/streams/new' exact component={StreamCreate} />
-                    {/* the :id is the wildcard */}
-                    <Route path='/streams/edit/:id' exact component={StreamEdit} />
-                    <Route path='/streams/delete/:id' exact component={StreamDelete} />
-                    <Route path='/streams/show' exact component={StreamShow} />
+                    {/* switch tag will show only one route */}
+                    <Switch>
+                        <Route path='/' exact component={StreamList} />
+                        <Route path='/streams/new' exact component={StreamCreate} />
+                        {/* the :id is the wildcard */}
+                        <Route path='/streams/edit/:id' exact component={StreamEdit} />
+                        <Route path='/streams/delete/:id' exact component={StreamDelete} />
+                        <Route path='/streams/:id' exact component={StreamShow} />
+                    </Switch>
                 </div>
             </Router>
         </div>
